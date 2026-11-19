@@ -24,6 +24,12 @@
   --color-moss: #3f4a2e;
   --color-lavender: #cdc3df;
 
+  /* Stamped foil */
+  --color-foil-top: #e5c07b;
+  --color-foil-bottom: #9e6b34;
+  --color-foil-highlight: rgb(255 236 196 / 0.55);
+  --color-leather: #3a1a14;
+
   /* Type */
   --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -33,7 +39,6 @@
   --text-lg: clamp(1.0625rem, 0.95rem + 0.4vw, 1.25rem);
   --text-xl: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
   --text-2xl: clamp(2rem, 1.2rem + 3vw, 3.5rem);
-  --text-hero: clamp(2.5rem, 1.2rem + 5.2vw, 5.5rem);
 
   /* Space & shape */
   --gutter: clamp(1rem, 0.5rem + 2.5vw, 3rem);
@@ -249,7 +254,6 @@ main:focus { outline: none; }
 .badge--outline { background: transparent; color: var(--color-oxblood); }
 
 /* Section wrappers share the max width */
-.hero,
 .impact-stats,
 .work,
 .approach,
@@ -369,8 +373,19 @@ main:focus { outline: none; }
 /* ==========================================================================
    Hero
    ========================================================================== */
+/* Full-bleed textured band, like a debossed leather box lid */
 .hero {
-  padding-block: clamp(3rem, 2rem + 5vw, 7rem);
+  position: relative;
+  padding-block: clamp(4rem, 2.5rem + 7vw, 9rem);
+  padding-inline: max(var(--gutter), (100% - var(--max-width)) / 2);
+  background:
+    var(--grain),
+    radial-gradient(38% 55% at 18% 28%, rgb(122 58 40 / 0.55), transparent 70%),
+    radial-gradient(30% 45% at 72% 70%, rgb(110 46 34 / 0.5), transparent 70%),
+    radial-gradient(45% 60% at 88% 12%, rgb(91 25 27 / 0.7), transparent 70%),
+    linear-gradient(160deg, var(--color-oxblood) 0%, var(--color-leather) 70%);
+  background-blend-mode: soft-light, normal, normal, normal, normal;
+  color: var(--color-cream);
 }
 
 .hero__copy { display: grid; gap: 1.5rem; max-width: 60rem; }
@@ -378,20 +393,35 @@ main:focus { outline: none; }
 .hero__title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: var(--text-hero);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
-  color: var(--color-ink);
+  font-size: clamp(3.25rem, 1.5rem + 8vw, 8.5rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
-.hero__title em { color: var(--color-oxblood); }
+
+/* Stamped matte-gold foil.
+   Shadows use filter: drop-shadow() because text-shadow paints over
+   background-clip:text glyphs and would muddy the gradient. */
+.foil-text {
+  color: var(--color-foil-top); /* fallback */
+  background-image: linear-gradient(180deg, var(--color-foil-top) 0%, var(--color-foil-bottom) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(0 -1px 0 var(--color-foil-highlight))
+    drop-shadow(0 2px 4px rgb(0 0 0 / 0.4));
+}
+.foil-text em { -webkit-text-fill-color: transparent; }
 
 .hero__lede {
   max-width: 36rem;
   font-size: var(--text-lg);
-  color: var(--color-ink-muted);
+  color: #e9dcd6;
 }
 
 .hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.hero :focus-visible { outline-color: var(--color-coral-on-dark); }
 
 /* ==========================================================================
    Ticker
@@ -399,6 +429,7 @@ main:focus { outline: none; }
 .ticker {
   display: flex;
   align-items: center;
+  border-top: 1px solid rgb(229 192 123 / 0.25);
   background: var(--color-oxblood);
   color: var(--color-cream);
 }
@@ -1000,6 +1031,12 @@ main:focus { outline: none; }
 
 @media (forced-colors: active) {
   body::after { display: none; }
+  .foil-text,
+  .foil-text em {
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+    filter: none;
+  }
   .button,
   .filter-chip,
   .badge,
