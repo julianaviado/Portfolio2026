@@ -370,14 +370,10 @@ main:focus { outline: none; }
    Hero
    ========================================================================== */
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(2rem, 1rem + 4vw, 5rem);
   padding-block: clamp(3rem, 2rem + 5vw, 7rem);
 }
 
-.hero__copy { display: grid; gap: 1.5rem; }
+.hero__copy { display: grid; gap: 1.5rem; max-width: 60rem; }
 
 .hero__title {
   font-family: var(--font-display);
@@ -396,124 +392,6 @@ main:focus { outline: none; }
 }
 
 .hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-
-/* Rebus Equation */
-.rebus-equation__visual {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  color: var(--color-ink-muted);
-}
-
-.rebus-glyph {
-  display: inline-grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 1.5px solid var(--color-ink);
-  border-radius: 46% 54% 50% 50% / 52% 48% 52% 48%; /* hand-thrown, slightly off */
-  background: var(--color-cream);
-  transition: transform var(--duration) var(--ease-out), background-color var(--duration) var(--ease-out);
-}
-.rebus-glyph svg {
-  width: 1.3rem;
-  height: 1.3rem;
-  fill: none;
-  stroke: var(--color-oxblood);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.rebus-glyph--coin { background: var(--color-coral); border-color: var(--color-oxblood); }
-.rebus-equation__visual:hover .rebus-glyph { transform: rotate(-8deg); }
-.rebus-equation__visual:hover .rebus-glyph--coin { transform: rotate(360deg) scale(1.08); }
-
-.rebus-equation__note { font-style: italic; font-size: 1.1rem; }
-
-/* Sleeve Visual (IKONA reference: card + oxblood sleeve + shadow play) */
-.sleeve-visual {
-  position: relative;
-  width: min(100%, 26rem);
-  aspect-ratio: 3 / 4.3;
-  margin-inline: auto;
-  isolation: isolate;
-}
-
-.sleeve-visual__card,
-.sleeve-visual__sleeve {
-  position: absolute;
-  left: 50%;
-  display: grid;
-  place-items: center;
-  color: var(--color-cream);
-}
-
-.sleeve-visual__card {
-  top: 0;
-  width: 76%;
-  height: 62%;
-  translate: -50% 0;
-  border-radius: 2px;
-  background:
-    linear-gradient(118deg, transparent 28%, rgb(30 6 8 / 0.92) 44%, rgb(30 6 8 / 0.92) 56%, transparent 74%),
-    linear-gradient(160deg, #d9907f 0%, var(--color-coral) 35%, #8a2f2c 100%);
-  box-shadow: 0 30px 60px -30px rgb(61 15 17 / 0.6);
-  transition: translate 900ms var(--ease-out);
-  align-content: center;
-  gap: 0.25rem;
-}
-.sleeve-visual:hover .sleeve-visual__card { translate: -50% -6%; }
-
-.sleeve-visual__card-label {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-.sleeve-visual__card-year {
-  font-family: var(--font-display);
-  font-size: 2.25rem;
-  line-height: 1;
-}
-
-.sleeve-visual__sleeve {
-  bottom: 0;
-  width: 92%;
-  height: 64%;
-  translate: -50% 0;
-  z-index: 1;
-  background:
-    var(--grain),
-    radial-gradient(120% 80% at 20% 0%, var(--color-oxblood-soft), var(--color-oxblood) 55%, var(--color-oxblood-deep));
-  background-blend-mode: soft-light, normal;
-  border-radius: 2px;
-  box-shadow: 0 40px 80px -40px rgb(30 6 8 / 0.8);
-  /* thumb notch cut-out */
-  -webkit-mask: radial-gradient(circle 2.25rem at 50% 0, transparent 98%, #000 100%);
-  mask: radial-gradient(circle 2.25rem at 50% 0, transparent 98%, #000 100%);
-}
-
-.sleeve-visual__sleeve-label {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  letter-spacing: 0.25em;
-}
-.sleeve-visual__sleeve-foot {
-  position: absolute;
-  bottom: 1.25rem;
-  font-size: 0.625rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  opacity: 0.85;
-}
-
-@media (max-width: 52rem) {
-  .hero { grid-template-columns: 1fr; }
-  .sleeve-visual { width: min(80%, 20rem); order: -1; }
-}
 
 /* ==========================================================================
    Ticker
