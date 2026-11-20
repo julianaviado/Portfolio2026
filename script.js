@@ -49,16 +49,6 @@
     sections.forEach((section) => sectionObserver.observe(section));
   }
 
-  /* ---------- Ticker pause (WCAG 2.2.2 Pause, Stop, Hide) ---------- */
-  const ticker = document.querySelector('.ticker');
-  const tickerToggle = ticker.querySelector('.ticker__toggle');
-
-  tickerToggle.addEventListener('click', () => {
-    const paused = ticker.classList.toggle('is-paused');
-    tickerToggle.setAttribute('aria-pressed', String(paused));
-    tickerToggle.querySelector('.ticker__toggle-label').textContent = paused ? 'Play' : 'Pause';
-  });
-
   /* ---------- Case Study Filter ---------- */
   const filterChips = document.querySelectorAll('.filter-chip');
   const caseCards = document.querySelectorAll('.case-card');

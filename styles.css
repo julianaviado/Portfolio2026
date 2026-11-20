@@ -470,60 +470,6 @@ main:focus { outline: none; }
 .hero :focus-visible { outline-color: var(--color-gold-on-dark); }
 
 /* ==========================================================================
-   Ticker
-   ========================================================================== */
-.ticker {
-  display: flex;
-  align-items: center;
-  border-top: 1px solid rgb(229 192 123 / 0.25);
-  background: var(--color-oxblood);
-  color: var(--color-cream);
-}
-
-.ticker__viewport {
-  flex: 1;
-  overflow: hidden;
-  -webkit-mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-}
-
-.ticker__track {
-  display: flex;
-  width: max-content;
-  animation: ticker-scroll 40s linear infinite;
-}
-.ticker__track span {
-  padding: 0.9rem 1.75rem;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.ticker__track span::after { content: "✦"; margin-left: 1.75rem; color: var(--color-gold); }
-
-.ticker.is-paused .ticker__track { animation-play-state: paused; }
-
-.ticker__toggle {
-  flex: none;
-  min-width: 5rem;
-  min-height: 2.75rem;
-  margin: 0.25rem 0.5rem;
-  border: 1px solid var(--color-gold-on-dark);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--color-cream);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  cursor: pointer;
-}
-.ticker__toggle:focus-visible { outline-color: var(--color-gold-on-dark); }
-
-@keyframes ticker-scroll {
-  to { transform: translateX(-50%); }
-}
-
-/* ==========================================================================
    Impact Stats
    ========================================================================== */
 .impact-stats {
@@ -1071,8 +1017,6 @@ main:focus { outline: none; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .ticker__track { animation: none; }
-  .ticker__toggle { display: none; }
 }
 
 @media (forced-colors: active) {
