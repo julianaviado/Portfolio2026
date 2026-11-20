@@ -219,9 +219,6 @@ main:focus { outline: none; }
 .button--primary { background: var(--color-oxblood); color: var(--color-cream); }
 .button--primary:hover { background: var(--color-oxblood-deep); }
 
-.button--ghost { border-color: var(--color-ink); background: transparent; }
-.button--ghost:hover { background: var(--color-ink); color: var(--color-cream); }
-
 .button--gold { background: var(--color-gold); color: var(--color-ink); }
 .button--gold:hover { background: var(--color-gold-soft); }
 
