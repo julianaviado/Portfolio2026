@@ -431,7 +431,14 @@ main:focus { outline: none; }
   color: var(--color-cream);
 }
 
-.hero__copy { display: grid; gap: 1.5rem; max-width: 60rem; }
+.hero__copy {
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;
+  max-width: 60rem;
+  margin-inline: auto;
+  text-align: center;
+}
 
 .hero__title {
   font-family: var(--font-display);
@@ -457,7 +464,7 @@ main:focus { outline: none; }
 }
 .foil-text em { -webkit-text-fill-color: transparent; }
 
-.hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.hero__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
 .hero :focus-visible { outline-color: var(--color-gold-on-dark); }
 
 /* ==========================================================================
