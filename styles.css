@@ -5,9 +5,9 @@
   color-scheme: light;
 
   /* Brand */
-  --color-oxblood: #5b191b;
-  --color-oxblood-deep: #3d0f11;
-  --color-oxblood-soft: #7a2a2c;
+  --color-oxblood: #6a2423;
+  --color-oxblood-deep: #4a1918;
+  --color-oxblood-soft: #8a3a37;
   --color-gold: #dfce97;          /* secondary accent; text use on dark only */
   --color-gold-soft: #eadfb9;     /* hover tint on dark surfaces */
   --color-gold-deep: #b9a160;     /* decorative fills/lines on light surfaces */
@@ -591,7 +591,7 @@ main:focus { outline: none; }
 .case-card__inner:hover,
 .case-card__inner:focus-within {
   transform: translateY(-4px);
-  box-shadow: 0 24px 40px -28px rgb(61 15 17 / 0.45);
+  box-shadow: 0 24px 40px -28px rgb(74 25 24 / 0.45);
 }
 
 .case-card__visual {
@@ -760,9 +760,9 @@ main:focus { outline: none; }
   border-radius: var(--radius-lg);
   background: var(--color-cream);
   color: var(--color-ink);
-  box-shadow: 0 40px 80px -30px rgb(30 6 8 / 0.6);
+  box-shadow: 0 40px 80px -30px rgb(38 14 13 / 0.6);
 }
-.case-dialog::backdrop { background: rgb(30 6 8 / 0.6); backdrop-filter: blur(3px); }
+.case-dialog::backdrop { background: rgb(38 14 13 / 0.6); backdrop-filter: blur(3px); }
 .case-dialog[open] { animation: dialog-in var(--duration) var(--ease-out); }
 
 .case-dialog__content { display: grid; gap: 0.85rem; padding: clamp(1.5rem, 1rem + 3vw, 3rem); }
@@ -844,7 +844,7 @@ main:focus { outline: none; }
 .story-block__shadow {
   position: absolute;
   inset: -20%;
-  background: linear-gradient(115deg, transparent 30%, rgb(91 25 27 / 0.16) 46%, rgb(91 25 27 / 0.16) 54%, transparent 70%);
+  background: linear-gradient(115deg, transparent 30%, rgb(106 36 35 / 0.16) 46%, rgb(106 36 35 / 0.16) 54%, transparent 70%);
   filter: blur(30px);
 }
 

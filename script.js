@@ -117,7 +117,7 @@
   /* ---------- A note for anyone who opens DevTools ---------- */
   console.log(
     '%cHey, you opened the console. 👋\n%cThe CSS is hand-written, the layers are named, and there are zero !important hacks outside the reduced-motion block. Let’s build something: #contact',
-    'font: 600 16px Georgia, serif; color: #5B191B;',
+    'font: 600 16px Georgia, serif; color: #6A2423;',
     'font: 13px system-ui, sans-serif; color: #1E1B1A;'
   );
 })();
