@@ -31,9 +31,9 @@
   --color-foil-top: #e5c07b;
   --color-foil-bottom: #9e6b34;
   --color-foil-highlight: rgb(255 236 196 / 0.55);
-  --color-steel-dark: #161617;
-  --color-steel: #212123;
-  --color-steel-sheen: rgb(225 225 228 / 0.34);
+  --color-plum-deep: #1c0919;
+  --color-plum: #33102e;
+  --color-magenta: #a8347a;
 
   /* Type */
   --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
@@ -57,8 +57,6 @@
   --duration: 400ms;
 
   /* Organic paper grain */
-  /* horizontal brushed-metal streaks: low x frequency, high y frequency */
-  --brushed: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004 0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E");
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -408,30 +406,67 @@ main:focus { outline: none; }
 /* ==========================================================================
    Hero
    ========================================================================== */
-/* Full-bleed brushed-steel plate. Sheen bands sit above and below the
-   headline so the area behind the gold foil stays dark enough for AA. */
+/* Full-bleed plum stage. Magenta glows and ginkgo leaves stay at the
+   edges so the area behind the gold foil stays dark enough for AA. */
 .hero {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
   padding-block: clamp(4rem, 2.5rem + 7vw, 9rem);
   padding-inline: max(var(--gutter), (100% - var(--max-width)) / 2);
   background:
-    var(--brushed),
     var(--grain),
-    radial-gradient(70% 22% at 62% 6%, var(--color-steel-sheen), transparent 70%),
-    radial-gradient(80% 26% at 40% 100%, rgb(225 225 228 / 0.22), transparent 70%),
-    linear-gradient(178deg,
-      var(--color-steel-dark) 0%,
-      #3b3b3e 12%,
-      var(--color-steel) 26%,
-      var(--color-steel-dark) 52%,
-      var(--color-steel) 78%,
-      #343437 100%);
-  background-size: 600px 300px, 160px 160px, auto, auto, auto;
-  background-blend-mode: overlay, soft-light, screen, screen, normal;
+    radial-gradient(40% 55% at 0% 100%, rgb(168 52 122 / 0.45), transparent 70%),
+    radial-gradient(35% 50% at 100% 0%, rgb(168 52 122 / 0.38), transparent 70%),
+    radial-gradient(60% 60% at 50% 50%, var(--color-plum-deep), transparent 80%),
+    linear-gradient(165deg, var(--color-plum) 0%, var(--color-plum-deep) 55%, var(--color-plum) 100%);
+  background-size: 160px 160px, auto, auto, auto, auto;
+  background-blend-mode: soft-light, normal, normal, normal, normal;
   color: var(--color-cream);
 }
 
+/* Ginkgo Leaf Field */
+.ginkgo-field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.ginkgo-field__defs { position: absolute; }
+
+.ginkgo-leaf {
+  position: absolute;
+  width: var(--leaf-size);
+  height: var(--leaf-size);
+  opacity: var(--leaf-opacity, 0.55);
+  rotate: var(--leaf-rotate);
+  animation: ginkgo-settle 1600ms var(--ease-out) both;
+  animation-delay: var(--leaf-delay, 0ms);
+}
+.ginkgo-leaf--1 { --leaf-size: clamp(7rem, 4rem + 14vw, 17rem); --leaf-rotate: 28deg; top: -6%; left: -4%; }
+.ginkgo-leaf--2 { --leaf-size: clamp(5rem, 3rem + 8vw, 10rem); --leaf-rotate: -18deg; --leaf-opacity: 0.4; bottom: 4%; left: 4%; --leaf-delay: 120ms; }
+.ginkgo-leaf--3 { --leaf-size: clamp(8rem, 4rem + 16vw, 19rem); --leaf-rotate: -150deg; bottom: -10%; right: -5%; --leaf-delay: 200ms; }
+.ginkgo-leaf--4 { --leaf-size: clamp(4rem, 2.5rem + 5vw, 7rem); --leaf-rotate: 160deg; --leaf-opacity: 0.45; top: 8%; right: 6%; --leaf-delay: 280ms; }
+.ginkgo-leaf--5 { --leaf-size: clamp(3rem, 2rem + 3vw, 5rem); --leaf-rotate: -40deg; --leaf-opacity: 0.35; top: 46%; left: 3%; --leaf-delay: 360ms; }
+.ginkgo-leaf--6 { --leaf-size: clamp(3rem, 2rem + 3vw, 5rem); --leaf-rotate: 70deg; --leaf-opacity: 0.35; top: 40%; right: 3%; --leaf-delay: 440ms; }
+
+/* Below desktop the headline spans the width: keep only corner leaves */
+@media (max-width: 64rem) {
+  .ginkgo-leaf--5,
+  .ginkgo-leaf--6 { display: none; }
+}
+@media (max-width: 40rem) {
+  .ginkgo-leaf--1 { top: -9%; left: -12%; }
+  .ginkgo-leaf--4 { top: auto; bottom: 3%; right: auto; left: 38%; }
+}
+
+@keyframes ginkgo-settle {
+  from { opacity: 0; translate: 0 -24px; }
+}
+
 .hero__copy {
+  position: relative;
+  z-index: 1;
   display: grid;
   justify-items: center;
   gap: 1.5rem;
